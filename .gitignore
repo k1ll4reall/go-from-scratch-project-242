@@ -1,0 +1,28 @@
+# Compiled binaries and test executables
+/bin/
+*.exe
+*.test
+*.out
+
+# Go workspace and vendored dependencies
+go.work
+go.work.sum
+/vendor/
+
+# Coverage, profiling, and build artifacts
+coverage.*
+*.coverprofile
+*.prof
+/build/
+/dist/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

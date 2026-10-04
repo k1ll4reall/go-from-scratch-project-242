@@ -1,31 +1,51 @@
-# Анализатор размера диска (Go)
+# Disk Analyzer
 
 [![hexlet-check](https://github.com/k1ll4reall/go-from-scratch-project-242/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/k1ll4reall/go-from-scratch-project-242/actions)
 
-Программа для анализа размера диска, которая позволяет получать информацию о занятом и свободном пространстве.
+Утилита на Go для подсчёта размера файлов и каталогов.
 
-Учебный проект Хекслета: https://ru.hexlet.io/programs/go-from-scratch
+## Запуск
 
-
-## Стек
-
-- Go
-
-## Установка
-
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
-
-```bash
-git clone https://github.com/k1ll4reall/go-from-scratch-project-242.git
-cd go-from-scratch-project-242
+```sh
+go run ./cmd/hexlet-path-size testdata/test.txt
 ```
 
-## Использование
+## Флаги
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+- `--human`, `-H` — удобный формат размера: `B`, `KB`, `MB` и далее.
+- `--all`, `-a` — учитывать скрытые файлы и каталоги с именами, начинающимися с точки.
+- `--recursive`, `-r` — учитывать содержимое вложенных каталогов.
 
----
+Без флагов размер выводится в байтах, скрытые элементы и содержимое вложенных каталогов не учитываются.
 
+## Примеры
+
+```sh
+go run ./cmd/hexlet-path-size --human testdata
+go run ./cmd/hexlet-path-size --all testdata
+go run ./cmd/hexlet-path-size --recursive --all testdata
+```
+
+## Использование как библиотеки
+
+Пакет `code` экспортирует функцию:
+
+```go
+GetPathSize(path string, recursive, human, all bool) (string, error)
+```
+
+Пример вызова:
+
+```go
+size, err := code.GetPathSize("testdata", true, true, false)
+```
+
+## Проверки
+
+```sh
+go test ./...
+golangci-lint run
+```
 <details>
 <summary>Автоматические тесты Хекслета</summary>
 
